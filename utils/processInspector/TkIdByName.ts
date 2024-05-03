@@ -8,7 +8,7 @@ export const TkIdByName = async (id:number,name:string) => {
     const url = `https://bpd.automationcloud.ibm.com/dba/test/rest/bpm/wle/v1/process/${id}/taskSummary/All?offset=0&limit=50`;
 
 
-    console.log(url)
+    
     const cookiesString = cookiesArray.map(cookie => `${cookie.name}=${cookie.value}`).join('; ');
 
     const requestOptions = {

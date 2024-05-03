@@ -12,21 +12,23 @@ test('test2', async ({ page }) => {
   // await page.goto('https://bpd.automationcloud.ibm.com/dba/test/ProcessPortal/launchTaskCompletion?taskId=43138');
   
   
- const resp = await TkIdByName(10971,'Crear Solicitu')
+//  const resp = await TkIdByName(10971,'Crear Solicitud')
   
-console.log(resp)
+// console.log(resp)
 
 
+await page.goto('https://bpd.automationcloud.ibm.com/dba/test/teamworks/executecf?processApp=GA&serviceName=DEMOS%20SERVICIOS%20MULTIPLES')
 
+
+await page.waitForTimeout(8000)
 
   // await page.frameLocator('iframe[title="Step\\: Crear Solicitud"]').frameLocator('iframe[title="Crear Solicitud"]').getByRole('button', { name: 'Add Row' }).click();
 
-  // await page.waitForTimeout(8000)
 
 
   // await page.frameLocator('iframe[title="Step\\: Crear Solicitud"]').frameLocator('iframe[title="Crear Solicitud"]').getByRole('button', { name: 'Add Row' }).click();
 })
 
-function StatusByInstanc(arg0: number) {
-  throw new Error('Function not implemented.');
-}
+
+
+

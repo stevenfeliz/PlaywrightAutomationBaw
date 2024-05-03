@@ -12,10 +12,18 @@ async function globalSetup() {
 
   await page.goto('https://bpd.automationcloud.ibm.com/dba/test/ProcessPortal');
 
-  await page.getByLabel('Nombre de usuario').fill('extern3884');
+  const username = 'input[name="identifier"]';
+  await page.waitForSelector(username, { timeout: 10000 })
+  await page.locator(username).fill('extern3884')
 
-  await page.getByLabel('Contraseña').fill('Calendario2024');
-  await page.getByRole('button', { name: 'Iniciar sesión' }).click();
+
+  const password = 'input[name="credentials.passcode"]';
+  await page.waitForSelector(password, { timeout: 10000 })
+  await page.locator(password).fill('Calendario2024')
+  
+
+
+  await page.locator('input[data-type="save"]').click();
 
 
   await page.waitForSelector('.icon-hamburger')
