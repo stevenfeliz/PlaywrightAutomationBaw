@@ -4,6 +4,7 @@ import {StatusByInstance} from '../utils/processInspector/StatusByInstance'
 
 import cookiesJSON from '../config/auth/auth.json'
 import { TkIdByName } from '../utils/processInspector/TkIdByName';
+import { AsignarTask } from '../utils/asignarTask';
 
 
 
@@ -17,7 +18,7 @@ test('test2', async ({ page }) => {
 // console.log(resp)
 
 
-await page.goto('https://bpd.automationcloud.ibm.com/dba/test/teamworks/executecf?processApp=GA&serviceName=DEMOS%20SERVICIOS%20MULTIPLES')
+await AsignarTask(10983,'Debida Diligencia')
 
 
 await page.waitForTimeout(8000)
