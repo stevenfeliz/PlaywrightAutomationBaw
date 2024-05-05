@@ -3,9 +3,9 @@ import { TypesTasksByInstance } from '../../interfaces/TasksByInstance.types';
 import cookiesJSON from '../../config/auth/auth.json';
 const cookiesArray = cookiesJSON.cookies;
 
-export const TaskByInstance = async (id: number) => {
+export const TaskByInstance = async (instanceID: number) => {
 
-    const url = `https://bpd.automationcloud.ibm.com/dba/test/rest/bpm/wle/v1/process/${id}/taskSummary/All?offset=0&limit=50`;
+    const url = `https://bpd.automationcloud.ibm.com/dba/test/rest/bpm/wle/v1/process/${instanceID}/taskSummary/All?offset=0&limit=50`;
 
 
 

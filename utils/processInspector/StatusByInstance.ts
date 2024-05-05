@@ -2,9 +2,9 @@ import cookiesJSON from '../../config/auth/auth.json';
 import { TypesStatusByInstance } from '../../interfaces/StatusByInstance.types';
 const cookiesArray = cookiesJSON.cookies;
 
-export const StatusByInstance = async (id:number) => {
+export const StatusByInstance = async (instanceID:number) => {
 
-    const url = `https://bpd.automationcloud.ibm.com/dba/test/rest/bpm/wle/v1/process/${id}?parts=summary%2Cactions%2Cdiagram`;
+    const url = `https://bpd.automationcloud.ibm.com/dba/test/rest/bpm/wle/v1/process/${instanceID}?parts=summary%2Cactions%2Cdiagram`;
 
 
     const cookiesString = cookiesArray.map(cookie => `${cookie.name}=${cookie.value}`).join('; ');

@@ -1,33 +1,34 @@
 
 import { test, expect } from '@playwright/test';
-import {StatusByInstance} from '../utils/processInspector/StatusByInstance'
-
-import cookiesJSON from '../config/auth/auth.json'
-import { TkIdByName } from '../utils/processInspector/TkIdByName';
-import { AsignarTask } from '../utils/asignarTask';
-
+import path from 'path';
+import { BaseElements } from '../POM/base/base.elements';
+import { BaseActions } from '../POM/base/base.actions';
 
 
 test('test2', async ({ page }) => {
 
-  // await page.goto('https://bpd.automationcloud.ibm.com/dba/test/ProcessPortal/launchTaskCompletion?taskId=43138');
-  
-  
-//  const resp = await TkIdByName(10971,'Crear Solicitud')
-  
-// console.log(resp)
+    const accion = new BaseActions(page)
 
 
-await AsignarTask(10983,'Debida Diligencia')
+    await accion.NewInstance('Ajustes Libro Mayor')
+
+    await page.pause()
+    // await page.goto('https://bpd.automationcloud.ibm.com/dba/test/ProcessPortal/launchTaskCompletion?taskId=43614')
 
 
-await page.waitForTimeout(8000)
+    // await page.pause()
+    // const iframe =  page.frameLocator('.cshsTaskWindow').frameLocator('#coach_div ifram')
 
-  // await page.frameLocator('iframe[title="Step\\: Crear Solicitud"]').frameLocator('iframe[title="Crear Solicitud"]').getByRole('button', { name: 'Add Row' }).click();
+    // const locator = iframe.owner();
+    // await expect(locator).toBeVisible();
 
 
+    // await iframe.getByRole('button', { name: 'documentos' }).waitFor({timeout:20000}).then(async()=>{
 
-  // await page.frameLocator('iframe[title="Step\\: Crear Solicitud"]').frameLocator('iframe[title="Crear Solicitud"]').getByRole('button', { name: 'Add Row' }).click();
+    //      await iframe.getByRole('button', { name: 'documentos' }).click()
+    //  })
+
+
 })
 
 
