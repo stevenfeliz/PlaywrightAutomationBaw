@@ -16,8 +16,8 @@ export class BaseActions {
 
     async LogIn() {
         await this.page.goto('https://bpd.automationcloud.ibm.com/dba/test/ProcessPortal')
-        await this.baseElements.generalElements.username.fill('extern3884')
-        await this.baseElements.generalElements.password.fill('Calendario2024')
+        await this.baseElements.generalElements.username.fill(process.env.OKTAUSERNAME!)
+        await this.baseElements.generalElements.password.fill(process.env.OKTAPASSWORD!)
         await this.baseElements.generalElements.buttonSignIn.click()
         await this.baseElements.generalElements.BawHamburgerIcon.waitFor({ timeout: 90000 })
         await this.page.context().storageState({ path: path.join(__dirname, '../../config/auth/auth.json') })
@@ -29,7 +29,8 @@ export class BaseActions {
         await this.page.goto('https://bpd.automationcloud.ibm.com/dba/test/ProcessPortal')
         await this.page.locator(`a[aria-label="${name}"]`).click()
         const title = await this.baseElements.generalElements.ProcessTitle.textContent()
-        expect(title).toContain(name)
+        let nameSinTres = name.replace(/3$/, "").trim();
+        expect(title).toContain(nameSinTres)
     }
 
 

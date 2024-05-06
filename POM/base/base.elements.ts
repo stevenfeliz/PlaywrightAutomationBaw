@@ -20,7 +20,7 @@ export class BaseElements {
             buttonSignIn: page.locator('input[data-type="save"]'),
             BawHamburgerIcon: page.locator('.icon-hamburger'),
             iframe: page.frameLocator('.cshsTaskWindow').frameLocator('#coach_div iframe'),
-            ProcessTitle: this.generalElements.iframe.locator('.title')
+            ProcessTitle: page.frameLocator('.cshsTaskWindow').frameLocator('#coach_div iframe').locator('.title')
         };
 
     }

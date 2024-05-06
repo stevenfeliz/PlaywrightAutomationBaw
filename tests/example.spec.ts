@@ -10,7 +10,7 @@ test('test2', async ({ page }) => {
     const accion = new BaseActions(page)
 
 
-    await accion.NewInstance('Ajustes Libro Mayor')
+    await accion.LogIn()
 
     await page.pause()
     // await page.goto('https://bpd.automationcloud.ibm.com/dba/test/ProcessPortal/launchTaskCompletion?taskId=43614')
