@@ -6,13 +6,15 @@ import dotenv from 'dotenv';
  * https://github.com/motdotla/dotenv
  */
 dotenv.config();
+const runAuth = process.env.RUN_AUTH === 'true';
+
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
   testDir: './tests',
-  // globalSetup:'./tests/auth.setup.ts',
+  globalSetup: runAuth ? './utils/auth.setup.ts' : undefined,
   timeout: 10000000,
 
   /* Run tests in files in parallel */

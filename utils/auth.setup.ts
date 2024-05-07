@@ -2,6 +2,7 @@ import {type Browser, type Page, chromium } from "@playwright/test"
 import { BaseActions } from "../POM/base/base.actions"
 
 
+
 async function globalSetup() {
 
   const browser: Browser = await chromium.launch({ headless: false })

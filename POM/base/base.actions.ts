@@ -27,7 +27,7 @@ export class BaseActions {
 
     async NewInstance(name: string) {
         await this.page.goto('https://bpd.automationcloud.ibm.com/dba/test/ProcessPortal')
-        await this.page.locator(`a[aria-label="${name}"]`).click()
+        await this.page.getByText(name).first().click()
         const title = await this.baseElements.generalElements.ProcessTitle.textContent()
         let nameSinTres = name.replace(/3$/, "").trim();
         expect(title).toContain(nameSinTres)
