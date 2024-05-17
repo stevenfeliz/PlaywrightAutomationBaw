@@ -1,17 +1,17 @@
 import {type Browser, type Page, chromium } from "@playwright/test"
-import { BaseActions } from "../POM/base/base.actions"
+import {BasePage} from '../POM/base/base.page'
 
 
 
 async function globalSetup() {
 
-  const browser: Browser = await chromium.launch({ headless: false })
+  const browser: Browser = await chromium.launch({headless:false})
   const context = await browser.newContext()
   const page: Page = await context.newPage()
 
-  const BaseAction = new BaseActions(page)
+  const BasePageInstance = new BasePage(page)
   
-  await BaseAction.LogIn()
+  await BasePageInstance.LogIn()
 
 }
 

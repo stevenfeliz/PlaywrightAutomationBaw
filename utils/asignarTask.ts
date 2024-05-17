@@ -17,7 +17,7 @@ export const AsignarTask = async (instanceId: number, taskName: string) => {
     await iframe.locator('#button-button-btn_asignar').click()
 
     
-    expect(await iframe.locator('input[id="table-rowselect-tb_Table[0]"]')).toBeVisible({timeout:10000}).then(async()=>{
+   await expect(iframe.locator('input[id="table-rowselect-tb_Table[0]"]')).toBeVisible({timeout:10000}).then(async()=>{
 
 
         const TasksList = await iframe.locator(`div[data-viewid="tarea1"] p`).allTextContents()
@@ -26,7 +26,9 @@ export const AsignarTask = async (instanceId: number, taskName: string) => {
     
             if (TasksList[i] == taskName) {
                 await iframe.locator(`input[id="table-rowselect-tb_Table[${i}]"]`).check()
-                await iframe.locator('#button-button-btn_asignar').click()
+                await page.waitForTimeout(5000)
+                await iframe.locator('div[data-controlidpath="btn_asignar"]').click()
+                await page.waitForTimeout(5000)
             }
     
     
@@ -34,5 +36,5 @@ export const AsignarTask = async (instanceId: number, taskName: string) => {
     
     })
     
-
+    await page.close()
 }
