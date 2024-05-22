@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { BasePage } from '../../../../../POM/base/base.page';
 
 
-test.describe('BABDP-3008 | Quitar Opción Estado a Avanzar de la tarea "Crear Solicitud"', () => {
+test.describe('BABDP-3008 | Quitar Opción Estado a Avanzar de la tarea Crear Solicitud', () => {
 
     // Caso de prueba
 
@@ -21,10 +21,14 @@ test.describe('BABDP-3008 | Quitar Opción Estado a Avanzar de la tarea "Crear S
             const IframeDom = base.iframe().locator('div[data-binding="local.datosInstancia.acciones.estadoSolicitudAvanzar"]').first()
 
             await expect(IframeDom).toHaveCSS('display', 'none')
+           
 
         });
 
-    }); 
+    });
+
+
+    
 
 })
 

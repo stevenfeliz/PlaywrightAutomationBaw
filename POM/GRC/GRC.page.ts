@@ -5,6 +5,7 @@ export class GRCPage {
     readonly page: Page;
     readonly iframe: () => FrameLocator;
     readonly GRCElements: {
+        getHistorialEjecucion: () => Locator,
         getButtonComentarios: () => Locator,
         getinputComentarios: () => Locator,
         getGuardarComentarios: () => Locator,
@@ -40,6 +41,7 @@ export class GRCPage {
         this.page = page
         this.iframe = () => page.frameLocator('.cshsTaskWindow').frameLocator('#coach_div iframe'),
             this.GRCElements = {
+                getHistorialEjecucion: () => this.iframe().getByRole('button', { name: 'Historial de Ejcución' }),
                 getIdInstancia: ()=> this.iframe().getByLabel('Id Instancia'),
                 getButtonComentarios: () => this.iframe().locator('button[id="button-button-CV_Generales1:Button2"]'),
                 getinputComentarios: () => this.iframe().locator('textarea[id="textarea-textarea-Text_area1"]'),
