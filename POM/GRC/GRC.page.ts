@@ -1,17 +1,23 @@
 import { type Locator, type Page, type FrameLocator, test, expect } from '@playwright/test';
+import path from 'path';
 
 
 export class GRCPage {
     readonly page: Page;
     readonly iframe: () => FrameLocator;
     readonly GRCElements: {
+        getButtonRegresarDocumentos: () => Locator,
+        getButtonInsertarDocumentos: () => Locator,
+        getSeleccionarArchivo: () => Locator,
+        getDocumentType: () => Locator,
+        getButtonDocumentos: () => Locator,
         getHistorialEjecucion: () => Locator,
         getButtonComentarios: () => Locator,
         getinputComentarios: () => Locator,
         getGuardarComentarios: () => Locator,
         getRegresarComentarios: () => Locator,
         getAvanzar: () => Locator,
-        getIdInstancia: ()=> Locator
+        getIdInstancia: () => Locator
     };
     readonly tasksElements: {
         crearSolicitud: {
@@ -41,8 +47,13 @@ export class GRCPage {
         this.page = page
         this.iframe = () => page.frameLocator('.cshsTaskWindow').frameLocator('#coach_div iframe'),
             this.GRCElements = {
+                getButtonRegresarDocumentos: () => this.iframe().locator('button[id="button-button-Button1"]'),
+                getButtonInsertarDocumentos: () => this.iframe().locator('button[id="button-button-cv_insertarDocumentos:Button1"]'),
+                getSeleccionarArchivo: () => this.iframe().locator('#filePicker'),
+                getDocumentType: () => this.iframe().locator('select[id="singleselect-cv_insertarDocumentos:Single_Select1"]'),
+                getButtonDocumentos: () => this.iframe().locator('button[id="button-button-CV_Generales1:Button1"]'),
                 getHistorialEjecucion: () => this.iframe().getByRole('button', { name: 'Historial de Ejcución' }),
-                getIdInstancia: ()=> this.iframe().getByLabel('Id Instancia'),
+                getIdInstancia: () => this.iframe().getByLabel('Id Instancia'),
                 getButtonComentarios: () => this.iframe().locator('button[id="button-button-CV_Generales1:Button2"]'),
                 getinputComentarios: () => this.iframe().locator('textarea[id="textarea-textarea-Text_area1"]'),
                 getGuardarComentarios: () => this.iframe().locator('button[id="button-button-Button1"]'),
@@ -99,8 +110,21 @@ export class GRCPage {
 
         const valueInput = await this.iframe().locator('.outerTable table tbody tr input[id="text-input-Table1:Display_text4[0]"]').inputValue()
         expect(valueInput).toContain('prueba')
-
+       
         await this.GRCElements.getRegresarComentarios().click()
+        await this.GRCElements.getButtonDocumentos().click()
+        const fileChooserPromise = this.page.waitForEvent('filechooser');
+        await this.GRCElements.getSeleccionarArchivo().click();
+        const fileChooser = await fileChooserPromise;
+        await fileChooser.setFiles(path.join(__dirname, '../base/test.pdf'));
+        await this.GRCElements.getDocumentType().selectOption('Expediente del cliente')
+        await this.GRCElements.getButtonInsertarDocumentos().click()
+        await this.iframe().locator('img[alt="Loading"]').waitFor({ state: 'attached', timeout: 50000 })
+        await this.iframe().locator('img[alt="Loading"]').waitFor({ state: 'hidden', timeout: 50000 })
+        const listadocumentos = await this.iframe().locator('.outerTable table tbody tr p').count()
+        expect(listadocumentos).toEqual(1)
+        await this.GRCElements.getButtonRegresarDocumentos().click()
+
         await this.consultarDatosPersona('RNC', '00101180230')
 
         await this.tasksElements.crearSolicitud.getNumeroTelefono().fill('8987678987')
@@ -114,12 +138,12 @@ export class GRCPage {
         await this.tasksElements.crearSolicitud.getPrioridad().selectOption('Baja')
 
         const InstanceID = await this.GRCElements.getIdInstancia().textContent()
-        
-        if(InstanceID){
-            if(parseInt(InstanceID)) return parseInt(InstanceID)
+
+        if (InstanceID) {
+            if (parseInt(InstanceID)) return parseInt(InstanceID)
 
         }
-  
+
 
     }
 }

@@ -1,4 +1,3 @@
-
 import { test, expect } from '@playwright/test';
 import { BasePage } from '../../../../../POM/base/base.page';
 import { GRCPage } from '../../../../../POM/GRC/GRC.page';
@@ -28,6 +27,7 @@ test.describe('BABDP-2446 | Yo como usuario del proceso necesito tener un histor
             await GRC.GRCElements.getIdInstancia().waitFor({ state: 'visible' })
             await GRC.GRCElements.getAvanzar().click()
 
+            await page.screenshot()
             await GRC.GRCElements.getIdInstancia().waitFor({ state: 'hidden' })
 
 
