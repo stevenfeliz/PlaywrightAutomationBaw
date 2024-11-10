@@ -52,7 +52,7 @@ pipeline {
         stage('Generate Allure Report single file') {
             steps {
                 // Genera el reporte de Allure
-                sh 'npx allure generate --single-file allure-results --clean -o allure-report'
+                sh 'npx allure generate --single-file allure-results --clean -o allure-singlefile'
             }
         }
 
