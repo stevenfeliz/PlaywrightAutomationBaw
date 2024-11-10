@@ -10,9 +10,9 @@ pipeline {
         stage('Install Java') {
             steps {
                 script {
-                    // Instalar Java en el contenedor de Playwright
-                    sh 'apt-get update && apt-get install -y openjdk-17-jdk'
-                    // Establecer JAVA_HOME en el contenedor
+                    // Instalar Java con permisos de superusuario si es posible
+                    sh 'sudo apt-get update && sudo apt-get install -y openjdk-17-jdk'
+                    // Establecer JAVA_HOME
                     sh 'export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64'
                     sh 'export PATH=$JAVA_HOME/bin:$PATH'
                 }
@@ -34,7 +34,7 @@ pipeline {
             steps {
                 script {
                     if (params.FIN) {
-                        echo "JAVA_HOME: ${env.JAVA_HOME}"  // Esto imprimirá el valor de JAVA_HOME
+                        echo "JAVA_HOME: ${env.JAVA_HOME}"
                     }
                 }
             }
