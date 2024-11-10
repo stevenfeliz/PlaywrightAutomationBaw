@@ -30,7 +30,10 @@ pipeline {
    }
        post{
           always {
-            echo 'This will always run'
+            allure includeProperties:
+            false,
+            jdk: '',
+            results: [[path: 'build/allure-results']]
         }
       }
 }
