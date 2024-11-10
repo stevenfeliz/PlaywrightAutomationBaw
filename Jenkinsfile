@@ -1,5 +1,9 @@
 pipeline {
    agent { docker { image 'mcr.microsoft.com/playwright:v1.43.1' } }
+    environment {
+        JAVA_HOME = '/opt/java/openjdk'
+        PATH = "${JAVA_HOME}/bin:${env.PATH}"
+    }
     parameters {
         booleanParam(name: 'RUN_UNIT_TESTS', defaultValue: false, description: 'Run unit tests')
         booleanParam(name: 'FIN', defaultValue: false, description: 'FIN')
