@@ -1,16 +1,36 @@
 import { test, expect } from '@playwright/test';
-import { GRCPage  } from '../POM/GRC/GRC.page';
-import { BasePage } from '../POM/base/base.page';
-import { AsignarTask } from '../utils/asignarTask';
 
 
 
-test('valida prueba mmg', async ({ page }) => {
+test.describe('valida prueba mmg', () => {
 
-   
-  await test.step('Dado que estoy en recibir factura', async () => {
-    await page.goto("https://www.google.com/");
-    await page.screenshot()
+  test('TC1', async ({ page }) => {
+  
+     
+    await test.step('Dado que estoy en recibir factura', async () => {
+      await page.goto("https://www.google.com/");
+      await page.screenshot()
+    })
+  
+  })
+  test('TC2', async ({ page }) => {
+  
+     
+    await test.step('Dado que estoy en recibir factura', async () => {
+      await page.goto("https://www.google.com/");
+      await page.screenshot()
+    })
+  
+  })
+
+  test('TC3', async ({ page }) => {
+  
+     
+    await test.step('Dado que estoy en recibir factura', async () => {
+      await page.goto("https://www.google.com/");
+      await page.screenshot()
+    })
+  
   })
 
 
