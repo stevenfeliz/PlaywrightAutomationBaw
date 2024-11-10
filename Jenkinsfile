@@ -49,6 +49,12 @@ pipeline {
                 sh 'npx allure generate allure-results --clean -o allure-report'
             }
         }
+        stage('Generate Allure Report single file') {
+            steps {
+                // Genera el reporte de Allure
+                sh 'npx allure generate --single-file allure-results --clean -o allure-report'
+            }
+        }
 
         stage('Save Allure History') {
             steps {
@@ -60,5 +66,13 @@ pipeline {
             }
         }
 
+    }
+       post {
+        always {
+            allure includeProperties:
+            false,
+            jdk: '',
+            results: [[path: 'allure-results']]
+        }
     }
 }
