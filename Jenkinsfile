@@ -5,8 +5,8 @@ pipeline {
     }
    stages {
       stage('e2e-tests') {
-         steps {
-              when {
+         steps('Install Dependencies') {
+            when {
                 expression { return params.RUN_UNIT_TESTS }
             }
             sh 'npm ci'
