@@ -10,17 +10,17 @@ pipeline {
     }
 
     stages {
-        // stage('Install Java') {
-        //     steps {
-        //         script {
-        //             // Instalar Java en el contenedor de Playwright
-        //             sh 'apt-get update && apt-get install -y openjdk-17-jdk'
-        //             // Establecer JAVA_HOME en el contenedor
-        //             sh 'export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64'
-        //             sh 'export PATH=$JAVA_HOME/bin:$PATH'
-        //         }
-        //     }
-        // }
+        stage('Install Java') {
+            steps {
+                script {
+                    // Instalar Java en el contenedor de Playwright
+                    sh 'apt-get update && apt-get install -y openjdk-17-jdk'
+                    // Establecer JAVA_HOME en el contenedor
+                    sh 'export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64'
+                    sh 'export PATH=$JAVA_HOME/bin:$PATH'
+                }
+            }
+        }
         // stage('e2e-tests') {
         //     steps {
         //         script {
