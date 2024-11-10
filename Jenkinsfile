@@ -66,8 +66,8 @@ pipeline {
             }
         }
     }
-    post{
-        always{
+    post {
+        always {
             allure includeProperties:
             false,
             jdk: '',
