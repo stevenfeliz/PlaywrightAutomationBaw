@@ -24,7 +24,7 @@ pipeline {
       stage('fin'){
             steps('FIN') {
             script{
-                if(params.FIN){D
+                if(params.FIN){
                     echo '${JAVA_HOME}'
                 }
             }
