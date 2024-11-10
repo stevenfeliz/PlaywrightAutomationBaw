@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'mcr.microsoft.com/playwright:v1.43.1' } }
+    agent { docker { image 'mcr.microsoft.com/playwright:v1.43.1'; args '--user root' } }
 
     parameters {
         booleanParam(name: 'RUN_UNIT_TESTS', defaultValue: false, description: 'Run unit tests')
@@ -10,8 +10,8 @@ pipeline {
         stage('Install Java') {
             steps {
                 script {
-                    // Instalar Java con permisos de superusuario si es posible
-                    sh 'sudo apt-get update && sudo apt-get install -y openjdk-17-jdk'
+                    // Instalar Java como root
+                    sh 'apt-get update && apt-get install -y openjdk-17-jdk'
                     // Establecer JAVA_HOME
                     sh 'export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64'
                     sh 'export PATH=$JAVA_HOME/bin:$PATH'
