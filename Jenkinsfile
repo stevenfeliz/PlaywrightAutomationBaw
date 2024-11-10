@@ -65,6 +65,11 @@ pipeline {
                 }
             }
         }
+         stage('Archive HTML') {
+            steps {
+                archiveArtifacts artifacts: 'allure-singlefile/index.html', allowEmptyArchive: true
+            }
+        }
     }
     post {
         always {
