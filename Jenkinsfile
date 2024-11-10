@@ -71,7 +71,7 @@ pipeline {
             allure includeProperties:
             false,
             jdk: '',
-            results: [[path: 'allure-results']]
+            results: [[path: 'build/allure-results']]
         }
     }
 }
