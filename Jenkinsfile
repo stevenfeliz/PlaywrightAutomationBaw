@@ -24,7 +24,7 @@ pipeline {
                 script {
                     if (params.RUN_UNIT_TESTS) {
                         sh 'npm ci'
-                        sh 'npx playwright test -g "tespruebaa"'
+                        sh 'npx playwright test -g "valida prueba mmg"'
                     }
                 }
             }
