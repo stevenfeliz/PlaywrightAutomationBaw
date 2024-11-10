@@ -16,6 +16,9 @@ pipeline {
                 }
             }
          }
+      }
+
+      stage('fin'){
             steps('FIN') {
             script{
                 if(params.FIN){
