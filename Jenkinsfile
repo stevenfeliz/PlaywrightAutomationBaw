@@ -6,11 +6,12 @@ pipeline {
    stages {
       stage('e2e-tests') {
          steps('Install Dependencies') {
-            when {
-                expression { return params.RUN_UNIT_TESTS }
+            script{
+                if(params.RUN_UNIT_TESTS){
+                    sh 'npm ci'
+                    sh 'npx playwright test -g "tespruebaa"'
+                }
             }
-            sh 'npm ci'
-            sh 'npx playwright test -g "tespruebaa"'
          }
       }
    }
